@@ -1,63 +1,87 @@
 /* ============================================================
-   STRUCTURE ONLY. Just enough to keep this a single, no-scroll
-   screen with a left page / spine / right page split. Panel
-   shapes, fonts, colors — all unstyled, waiting on your sketch.
+   Layout follows the hand-sketched two-page spread. The grid is
+   defined with grid-template-areas below — it's literally an
+   ASCII map of the page, so if a panel is the wrong size/position
+   relative to your sketch, adjust that string directly rather
+   than juggling grid-column/row numbers.
 
-   Global resets (*, html/body/#root) live in index.css instead,
-   since those apply app-wide, not just to this component.
+   Rectangles only (no diagonal cuts) — deliberately simple.
+   Structurally symmetric: 4 columns of content mirror each other
+   on either side of the spine (cols1-4 vs cols7-10), so the spine
+   sits at true horizontal center without needing any special-case
+   positioning.
+
+   10 columns x 9 rows. Current area map:
+
+     header header header header header header header header header header
+     topLeftA topLeftA leftTall leftTall spine spine rightPanel rightPanel topRightA topRightA
+     topLeftA topLeftA leftTall leftTall spine spine rightPanel rightPanel topRightA topRightA
+     topLeftB topLeftB leftTall leftTall spine spine rightPanel rightPanel topRightB topRightB
+     .        .        .        .        linkicons linkicons .        .        .        .
+     h h h h i i j1 j2 k l
+     h h h h i i j1 j2 k l
+     h h h h i i j1 j2 k l
+     h h h h i i j1 j2 k l
+
    ============================================================ */
 
 .spread {
   height: 100vh;
   width: 100vw;
+  box-sizing: border-box;
+  padding: 0.9rem; /* perimeter gutter — matches the gap between panels */
   display: grid;
-  grid-template-columns: 1fr auto 1fr; /* left page | spine | right page */
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: 0.7fr repeat(3, 1fr) 0.5fr repeat(4, 1fr);
+  gap: 0.9rem; /* the manga gutter — space between every panel */
+  grid-template-areas:
+    "header header header header header header header header header header"
+    "topLeftA topLeftA leftTall leftTall spine spine rightPanel rightPanel topRightA topRightA"
+    "topLeftA topLeftA leftTall leftTall spine spine rightPanel rightPanel topRightA topRightA"
+    "topLeftA topLeftA leftTall leftTall spine spine rightPanel rightPanel topRightB topRightB"
+    "topLeftB topLeftB leftTall leftTall spine spine rightPanel rightPanel topRightB topRightB"
+    "h h h h linkicons linkicons j1 j2 k l"
+    "h h h h i i j1 j2 k l"
+    "h h h h . . j1 j2 k l"
+    "h h h h . . j1 j2 k l";
   background: var(--color-bg, #fff);
   color: var(--color-fg, #000);
 }
 
-/* ---- spine ---- */
-.spine {
-  width: clamp(140px, 14vw, 220px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 1.5rem;
-  padding: 1rem;
-}
+/* ---- grid placement ---- */
+/* (content/appearance styling lives further down, grouped by role) */
 
-.links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
+.area-header      { grid-area: header; }
+.area-topLeftA    { grid-area: topLeftA; }
+.area-topLeftB    { grid-area: topLeftB; }
+.area-leftTall    { grid-area: leftTall; }
+.area-spine       { grid-area: spine; }
+.area-rightPanel  { grid-area: rightPanel; }
+.area-topRightA   { grid-area: topRightA; }
+.area-topRightB   { grid-area: topRightB; }
+.area-linkicons   { grid-area: linkicons; }
+.area-h           { grid-area: h; }
+.area-i           { grid-area: i; }
 
-/* ---- pages ---- */
-.page {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1.5rem;
-  overflow: hidden;
-}
+/* increasing height, left to right — anchored to the bottom of the
+   row so they read as a staircase rather than growing from center */
+.area-j1          { grid-area: j1; align-self: end; height: 35%; }
+.area-j2          { grid-area: j2; align-self: end; height: 55%; }
+.area-k           { grid-area: k;  align-self: end; height: 75%; }
+.area-l           { grid-area: l;  align-self: end; height: 100%; }
 
-.page-label {
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-/* ---- panels ---- */
+/* ---- shared panel look ---- */
 .panel {
   border: 1px solid currentColor; /* placeholder so panels are visible */
   padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  flex: 1;
   overflow: hidden;
+}
+
+.panel-blank {
+  /* content-less panel — just the border, waiting on artwork/content */
 }
 
 .panel-role {
@@ -66,15 +90,80 @@
   color: var(--color-accent, currentColor);
 }
 
-/* ---- colorway switcher ---- */
-.colorway-switcher {
+.page-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ---- spine (name/description) ---- */
+.area-spine {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   gap: 0.5rem;
 }
 
+/* ---- link icons row ---- */
+.area-linkicons {
+  border: 1px solid currentColor; /* now reads as its own panel */
+  width: 85%; /* thinner than the spine panel it sits under */
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.link-icons {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.icon-link {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--color-fg, #000);
+  font-size: 0.75rem;
+}
+
+/* ---- cta ("link to page") ---- */
+.area-i {
+  align-self: center;
+  justify-self: center;
+  width: 70%;
+  height: 50%;
+}
+
+.panel-cta {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  color: var(--color-fg, #000);
+  font-size: 0.8rem;
+}
+
+/* ---- colourway switcher ---- */
+.colourway-switcher {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border: 1px solid currentColor;
+}
+
 .swatch {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
   border-radius: 50%;
   border: 1px solid var(--color-fg, #000);
   cursor: pointer;
@@ -84,4 +173,85 @@
 .swatch.active {
   outline: 2px solid var(--color-fg, #000);
   outline-offset: 2px;
+}
+
+/* ============================================================
+   MOBILE — below 768px, the two-page-spread grid is dropped in
+   favour of a plain scrolling stack. Same markup, same classes;
+   this block just overrides how they're laid out.
+
+   How this works:
+   - .spread switches from `display: grid` to `display: flex;
+     flex-direction: column`. All the grid-area / column / row
+     rules above still exist in the stylesheet, but a flex
+     container ignores them, so they're harmless dead weight
+     rather than something you need to delete.
+   - Panels have no natural reading order once they're not pinned
+     to grid cells, so each one gets an explicit `order` number
+     below — that's the actual "mobile layout": just a priority
+     list. Reordering it is editing numbers, not moving markup.
+   - A few panels (icon row, cta, staircase panels) had percentage
+     widths/heights or align-self tuned for their old grid cell;
+     those get reset here since they no longer mean anything in a
+     column of auto-height blocks.
+   ============================================================ */
+
+@media (max-width: 768px) {
+  html, body, #root {
+    height: auto;
+    overflow: auto; /* let the stack scroll */
+  }
+
+  .spread {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+    width: 100vw;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  /* Reading order for mobile — a guess at priority, easy to
+     re-rank by changing these numbers. Lower = higher up. */
+  .area-header      { order: 1; }
+  .area-spine       { order: 2; }
+  .area-linkicons   { order: 3; }
+  .area-l           { order: 4; } /* colourway switcher */
+  .area-leftTall    { order: 5; } /* MP3 Player */
+  .area-rightPanel  { order: 6; } /* Regurgitate */
+  .area-h           { order: 7; } /* Notion CMS / Blog */
+  .area-k           { order: 8; } /* Blockbuster UWO */
+  .area-i           { order: 9; } /* link to page */
+  .area-topLeftA    { order: 10; }
+  .area-topLeftB    { order: 11; }
+  .area-topRightA   { order: 12; }
+  .area-topRightB   { order: 13; }
+  .area-j1          { order: 14; }
+  .area-j2          { order: 15; }
+
+  /* Reset sizing that only made sense inside a grid cell */
+  .area-linkicons {
+    width: 100%;
+  }
+
+  .area-i {
+    width: 100%;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    padding: 1.5rem 1rem; /* give the cta some presence now it's full-width */
+  }
+
+  .area-j1, .area-j2, .area-k, .area-l {
+    height: auto;
+    align-self: stretch;
+  }
+
+  /* the colourway strip reads better as a horizontal row on mobile */
+  .colourway-switcher {
+    flex-direction: row;
+    height: auto;
+    padding: 0.75rem;
+  }
 }

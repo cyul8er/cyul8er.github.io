@@ -8,43 +8,47 @@ import colourways from './colourways'
 
 const profile = {
   name: 'Claire Yu',
-  description: '2nd yr electrical engineering @ UWO \n"nerd out"', // placeholder — fill in
+  description: '2nd year electrical engineering @ UWO',
   links: {
-    resume: '/Claire_Yu_Resume.pdf', 
+    resume: '/resume.pdf', // swap for your actual resume path
     github: 'https://github.com/cyul8er',
-    email: 'mailto:claireyu.cyu@gmail.com', 
-    instagram: 'https://www.instagram.com/selfportraitsofyu/',
+    email: 'mailto:claireyu.cyu@gmail.com',
+    instagram: 'https://instagram.com/selfportraitsofyu', 
+  },
+  // "link to page" box from the sketch — target/label still undecided.
+  // Point this at whatever it should be (full site? about page? a
+  // specific project?) once you've settled it.
+  cta: {
+    label: '', // placeholder
+    href: '#', // placeholder
   },
 }
 
-const stemProjects = [
-  {
-    title: 'MP3 Player',
-    description: '', 
-    link: '#', 
-  },
-]
+const mp3Project = {
+  title: 'MP3 Player',
+  description: '', // placeholder
+  link: '#', // placeholder — repo / writeup
+}
 
-const filmProjects = [
-  {
-    title: 'Regurgitate',
-    role: 'Assistant Director',
-    description: '',
-    link: '#',
-  },
-  {
-    title: 'Blockbuster UWO',
-    role: 'Club Executive — Custom Website',
-    description: '', 
-    link: '#',
-  },
-]
+const regurgitate = {
+  title: 'Regurgitate',
+  role: 'Assistant Director',
+  description: '', // placeholder
+  link: '#', // placeholder
+}
 
-// components
+const blockbusterUwo = {
+  title: 'Blockbuster UWO',
+  role: 'Club Executive — Custom Website',
+  description: '', // placeholder
+  link: '#', // placeholder
+}
 
-function Panel({ title, role, description, link }) {
+// ---- shared panel components -------------------------------------
+
+function Panel({ title, role, description, link, className = '' }) {
   return (
-    <div className="panel">
+    <div className={`panel ${className}`}>
       <h2>{title}</h2>
       {role && <div className="panel-role">{role}</div>}
       <p>{description}</p>
@@ -53,6 +57,40 @@ function Panel({ title, role, description, link }) {
           {/* link label placeholder */}
         </a>
       )}
+    </div>
+  )
+}
+
+// Blank/decorative panel — no content decided yet, just holds the
+// grid cell and border so the page reads correctly while empty.
+function BlankPanel({ className = '' }) {
+  return <div className={`panel panel-blank ${className}`} />
+}
+
+function LinkIcons() {
+  const entries = [
+    { key: 'resume', label: 'R', href: profile.links.resume, external: true },
+    { key: 'github', label: 'G', href: profile.links.github, external: true },
+    { key: 'email', label: 'E', href: profile.links.email, external: false },
+    { key: 'instagram', label: 'I', href: profile.links.instagram, external: true },
+  ]
+
+  return (
+    <div className="link-icons">
+      {entries.map((entry) => (
+        <a
+          key={entry.key}
+          className="icon-link"
+          href={entry.href}
+          target={entry.external ? '_blank' : undefined}
+          rel={entry.external ? 'noreferrer' : undefined}
+          aria-label={entry.key}
+          title={entry.key}
+        >
+          {/* swap these letter placeholders for real icons, e.g. lucide-react */}
+          {entry.label}
+        </a>
+      ))}
     </div>
   )
 }
@@ -74,23 +112,7 @@ function ColourwaySwitcher({ current, onChange }) {
   )
 }
 
-function Spine({ currentColourway, onColourwayChange }) {
-  return (
-    <div className="spine">
-      <h1>{profile.name}</h1>
-      <p>{profile.description}</p>
-
-      <nav className="links">
-        <a href={profile.links.resume} target="_blank" rel="noreferrer">Resume</a>
-        <a href={profile.links.github} target="_blank" rel="noreferrer">GitHub</a>
-        <a href={profile.links.email}>Email</a>
-        <a href={profile.links.instagram} target="_blank" rel="noreferrer">Instagram</a>
-      </nav>
-
-      <ColourwaySwitcher current={currentColourway} onChange={onColourwayChange} />
-    </div>
-  )
-}
+// ---- app -----------------------------------------------------------
 
 function App() {
   const [colourwayId, setColourwayId] = useState(colourways[0].id)
@@ -98,21 +120,46 @@ function App() {
 
   return (
     <div className="spread" style={activeColourway.colors}>
-      <section className="page page-left">
-        <div className="page-label">EE / STEM</div>
-        {stemProjects.map((p) => (
-          <Panel key={p.title} {...p} />
-        ))}
-      </section>
+      <BlankPanel className="area-header" />
 
-      <Spine currentColourway={colourwayId} onColourwayChange={setColourwayId} />
+      <BlankPanel className="area-topLeftA" />
+      <BlankPanel className="area-topLeftB" />
 
-      <section className="page page-right">
-        <div className="page-label">Film / Production</div>
-        {filmProjects.map((p) => (
-          <Panel key={p.title} {...p} />
-        ))}
-      </section>
+      <Panel {...mp3Project} className="area-leftTall" />
+
+      <div className="area-spine panel">
+        <h1>{profile.name}</h1>
+        <p>{profile.description}</p>
+      </div>
+
+      <Panel {...regurgitate} className="area-rightPanel" />
+
+      <BlankPanel className="area-topRightA" />
+      <BlankPanel className="area-topRightB" />
+
+      <div className="area-linkicons">
+        <LinkIcons />
+      </div>
+
+      <div className="area-h panel">
+        <h2>Notion CMS / Blog</h2>
+        {/* placeholder — link out to your Notion-hosted blog */}
+        <a className="panel-link" href="#" target="_blank" rel="noreferrer"></a>
+      </div>
+
+      <a className="area-i panel panel-cta" href={profile.cta.href}>
+        {profile.cta.label || '(link to page)'}
+      </a>
+
+      {/* room for more — currently empty */}
+      <BlankPanel className="area-j1" />
+      <BlankPanel className="area-j2" />
+
+      <Panel {...blockbusterUwo} className="area-k" />
+
+      <div className="area-l">
+        <ColourwaySwitcher current={colourwayId} onChange={setColourwayId} />
+      </div>
     </div>
   )
 }
