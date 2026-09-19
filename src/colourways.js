@@ -5,7 +5,7 @@
 
 const colourways = [
   {
-    id: 'grey',
+    id: 'og',
     name: 'Classic',
     colors: {
       '--color-bg': '#EAEAEA',
@@ -40,7 +40,26 @@ const colourways = [
       '--color-accent': '#9434E3',
     },
   },
-  // add more colourways here, e.g.:
+    {
+    id: "paper",
+    name: "Paper",
+    colors: { "--color-bg": "#d9d1bf", "--color-fg": "#16130f", "--color-accent": "#b3361f" },
+  },
+  {
+    id: "moss",
+    name: "Moss",
+    colors: { "--color-bg": "#c9d0b8", "--color-fg": "#1b2416", "--color-accent": "#7a3b2e" },
+  },
+  {
+    id: "bone",
+    name: "Bone",
+    colors: { "--color-bg": "#efece4", "--color-fg": "#1a1a1a", "--color-accent": "#2f5d8a" },
+  },
+  {
+    id: "night",
+    name: "Night",
+    colors: { "--color-bg": "#14110f", "--color-fg": "#e8e0cc", "--color-accent": "#d6a441" },
+  },
   // {
   //   id: 'green',
   //   name: 'Green',
