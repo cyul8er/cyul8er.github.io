@@ -3,19 +3,19 @@
 @property --color-bg {
   syntax: "<color>";
   inherits: true;
-  initial-value: #eaeaea;
+  initial-value: #d9d1bf;
 }
 
 @property --color-fg {
   syntax: "<color>";
   inherits: true;
-  initial-value: #222222;
+  initial-value: #16130f;
 }
 
 @property --color-accent {
   syntax: "<color>";
   inherits: true;
-  initial-value: #969696;
+  initial-value: #b3361f;
 }
 
 .temp {
@@ -267,7 +267,7 @@ a.project:hover h2 {
 
 .themes {
   display: flex;
-  gap: 10px;
+  gap: 15px;
 }
 
 .swatch {

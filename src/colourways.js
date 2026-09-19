@@ -4,39 +4,39 @@
 // so keep it short and unique.
 
 const colourways = [
-  {
-    id: 'og',
-    name: 'Classic',
-    colors: {
-      '--color-bg': '#EAEAEA',
-      '--color-fg': '#222222',
-      '--color-accent': '#969696',
-    },
-  },
-  {
-    id: 'blue',
-    name: 'Blue',
-    colors: {
-      '--color-bg': '#EAEAEA',
-      '--color-fg': '#222222',
-      '--color-accent': '#3443E3',
-    },
-  },
-  {
-    id: 'red',
-    name: 'Red',
-    colors: {
-      '--color-bg': '#EAEAEA',
-      '--color-fg': '#222222',
-      '--color-accent': '#E33534',
-    },
-  },
+  // {
+  //   id: 'og',
+  //   name: 'Classic',
+  //   colors: {
+  //     '--color-bg': '#EAEAEA',
+  //     '--color-fg': '#222222',
+  //     '--color-accent': '#969696',
+  //   },
+  // },
+  // {
+  //   id: 'blue',
+  //   name: 'Blue',
+  //   colors: {
+  //     '--color-bg': '#EAEAEA',
+  //     '--color-fg': '#222222',
+  //     '--color-accent': '#3443E3',
+  //   },
+  // },
+  // {
+  //   id: 'red',
+  //   name: 'Red',
+  //   colors: {
+  //     '--color-bg': '#EAEAEA',
+  //     '--color-fg': '#222222',
+  //     '--color-accent': '#E33534',
+  //   },
+  // },
   {
     id: 'purple',
     name: 'Purple',
     colors: {
-      '--color-bg': '#EAEAEA',
-      '--color-fg': '#222222',
+      '--color-bg': '#392c46',
+      '--color-fg': '#9b9999',
       '--color-accent': '#9434E3',
     },
   },

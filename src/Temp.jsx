@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import colourways from "./colourways.js"; // adjust the path if yours lives elsewhere
+import colourways from "./colourways.js"; 
 import "./temp.css";
 
 // variables 
@@ -9,6 +9,7 @@ const TAGLINE = "\"Nerd out\"";
 const DESCRIPTION = [
   "2nd year electrical engineering @ uwo",
   "Currently: studying for my lsat!",
+  "This site is very much a work in progress so bear with me as I update :)"
 ];
 
 const NAV = [
@@ -21,13 +22,13 @@ const PROJECTS = [
   {
     title: "Mp3 Player",
     text: "From scratch, hardware and software",
-    image: "",
+    image: "/mp3_sch.png",
     href: "",
   },
   {
     title: "Multiple Choice",
     text: "Support DP with lighing and set up",
-    image: "",
+    image: "/mc_gaff.png",
     href: "",
   },
 ];
