@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";import "./index.css";
+import { HashRouter, Routes, Route } from "react-router-dom";import "./index.css";
 // import App from "./App.jsx"; 
 // import Temp from "./Temp.jsx";
 import Simple from "./Simple.jsx";
@@ -9,7 +9,7 @@ import Misc from "./pages/Misc.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         {/* <App /> */}
         {/* <Temp /> */}
@@ -17,6 +17,6 @@ createRoot(document.getElementById("root")).render(
         <Route path="/engineering" element={<Engineering />} />
         <Route path="/other" element={<Misc />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   </StrictMode>
 );
