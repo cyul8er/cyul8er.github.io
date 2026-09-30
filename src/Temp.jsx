@@ -13,9 +13,9 @@ const DESCRIPTION = [
 ];
 
 const NAV = [
-  { label: "Engineering", href: "/Eng.jsx" },
-  { label: "Film", href: "/Film.jsx" },
-  { label: "Miscellaneous", href: "/Misc.jsx" },
+  { label: "Engineering", href: "/pages/Eng.jsx" },
+  { label: "Film", href: "/pages/Film.jsx" },
+  { label: "Miscellaneous", href: "/pages/Misc.jsx" },
 ];
 
 const PROJECTS = [
@@ -33,7 +33,7 @@ const PROJECTS = [
   },
 ];
 
-const PHOTO = { image: "/base.JPG", alt: "Photo of Your Name" };
+const PHOTO = { image: "/base.JPG", alt: "photo I took in portugal" };
 
 const BUTTONS = [
   { label: "Email", href: "mailto:claireyu.cyu@gmail.com" },

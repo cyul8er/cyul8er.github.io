@@ -1,4 +1,7 @@
-import SubPage from "../components/SubPage.jsx";
+import { Link } from "react-router-dom";
+
+// somewhere in the JSX:
+<Link to="/">Back</Link>
 
 // Edit the items below. image: path in /public (e.g. "/misc/one.jpg"), "" shows a placeholder.
 // href: "" for no link, "/something" for a page on this site, "https://..." for an outside link.
