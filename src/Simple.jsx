@@ -63,7 +63,7 @@ export default function Simple() {
                     </a>
                 ))}  
             </nav>
-            <img className="photo" src="/base.JPG" alt="portugal rock" />
+            <img className="photo" src="base.JPG" alt="portugal rock" />
             <figcaption className="caption">
             {"See you later\nC YU later\ncyulater\ncyul8er"}
             </figcaption>
