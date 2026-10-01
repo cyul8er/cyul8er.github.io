@@ -5,9 +5,6 @@ import "./simple.css";
 import { PROJECTS } from "./projs.js";
 import { FiInstagram, FiFileText, FiMail, FiGithub } from "react-icons/fi";
 
-import Engineering from "./pages/Eng.jsx";
-import Misc from "./pages/Misc.jsx";
-
 
 const LINKS = [
   { label: "Email", href: "mailto:claireyu.cyu@gmail.com", icon: FiMail },
@@ -29,7 +26,7 @@ export default function Simple() {
           <section className="block">
             <h2>About</h2>
             <p>
-              I think cameras are cool → I think optics and photonics is interesting → Very interested in imaging
+              I think cameras are cool → I think optics and photonics are interesting
             </p>
             <p>Currently: studying for my lsat!</p>
           </section>

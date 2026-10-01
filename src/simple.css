@@ -6,7 +6,6 @@
   --line: #d6d1c4;
   --content-width:840px
 
-  /* Photo shape: 1 / 1 (square), 4 / 5 (portrait), 3 / 2 (landscape) */
   --photo-ratio: 4 / 5;
 }
 
@@ -20,7 +19,7 @@ html,
 body {
   height: 100%;
   margin: 0;
-  overflow: hidden; /* no scroll */
+  overflow: hidden; 
 }
 
 body {
@@ -39,7 +38,6 @@ a:focus-visible {
   outline-offset: 3px;
 }
 
-/* One screen: buttons on top, content centred in the rest */
 .page {
   height: 100vh;
   height: 100dvh;
@@ -53,7 +51,7 @@ a:focus-visible {
   justify-content: flex-end;
   flex-wrap: wrap;
   gap: 8px;
-  width: 100%;       /* NEW */
+  width: 100%;       
   max-width: var(--content-width);
   /* margin: 0 auto;   */
 }
@@ -157,9 +155,9 @@ a:focus-visible {
   color: var(--muted);
   font-size: 0.8rem;
   line-height: 1.4;
-  white-space: pre-line; /* NEW: turns \n into line breaks */
+  white-space: pre-line;
 }
-/* Narrow screens: stack, still one screen */
+/* narrow screens  */
 @media (max-width: 720px) {
     html,
     body {
