@@ -15,7 +15,7 @@ createRoot(document.getElementById("root")).render(
         {/* <Temp /> */}
         <Route path="/" element={<Simple />} />
         <Route path="/engineering" element={<Engineering />} />
-        <Route path="/other" element={<Misc />} />
+        <Route path="/misc" element={<Misc />} />
       </Routes>
     </HashRouter>
   </StrictMode>

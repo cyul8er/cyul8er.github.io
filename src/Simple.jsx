@@ -3,16 +3,9 @@ import { Link } from "react-router-dom";
 // import colourways from "./colourways.js"; 
 import "./simple.css";
 import { PROJECTS } from "./projs.js";
-import { FiInstagram, FiFileText, FiMail, FiGithub } from "react-icons/fi";
+import { LINKS } from "./links.js"
 
-
-const LINKS = [
-  { label: "Email", href: "mailto:claireyu.cyu@gmail.com", icon: FiMail },
-  { label: "GitHub", href: "https://github.com/cyul8er", icon: FiGithub },
-  { label: "Resume", href: "/resume.pdf", icon: FiFileText },
-  { label: "Instagram", href: "https://www.instagram.com/selfportraitsofyu/", icon: FiInstagram },
-];
-
+const featured = PROJECTS.filter((p) => p.home).slice(0, 3);
 
 export default function Simple() {
   return (
@@ -34,7 +27,7 @@ export default function Simple() {
           <section className="block">
             <h2>Projects</h2>
             <ul className="projects">
-                {PROJECTS.map((p) => (
+                {featured.map((p) => (
                     <li key={p.name}>
                     <a href={p.href}>{p.name}</a>
                     <span className="status" data-status={p.status}>{p.status}</span>
@@ -60,7 +53,7 @@ export default function Simple() {
                     </a>
                 ))}  
             </nav>
-            <img className="photo" src="base.JPG" alt="portugal rock" />
+            <img className="photo" src="shadow.jpg" alt="portugal rock" />
             <figcaption className="caption">
             {"See you later\nC YU later\ncyulater\ncyul8er"}
             </figcaption>

@@ -1,13 +1,11 @@
 import "../simple.css";
-import { FiInstagram, FiFileText, FiMail, FiGithub } from "react-icons/fi";
 import { PROJECTS } from "../projs.js";
+import { LINKS } from "../links.js";
+import { Link } from "react-router-dom";
+import { IoIosArrowBack } from "react-icons/io";
 
-const LINKS = [
-  { label: "Instagram", href: "https://instagram.com/yourhandle", icon: FiInstagram },
-  { label: "Resume", href: "/resume.pdf", icon: FiFileText },
-  { label: "Email", href: "mailto:you@example.com", icon: FiMail },
-  { label: "GitHub", href: "https://github.com/yourusername", icon: FiGithub },
-];
+const projects = PROJECTS.filter((p) => p.cat === "eng");
+
 
 export default function Eng() {
   return (
@@ -17,17 +15,19 @@ export default function Eng() {
           <h1 className="name">Engineering</h1>
 
           <section className="block">
-            <h2>About</h2>
+            <br/>
             <p>
-              I think cameras are cool → I think optics and photonics is interesting → Im
+              A collection of projects I deem "engineering" based (aka technical projects)
             </p>
-            <p>Currently: studying for my lsat!</p>
+            <p>
+              This page is still a work in progress...
+            </p>
           </section>
 
           <section className="block">
             <h2>Projects</h2>
             <ul className="projects">
-              {PROJECTS.map((p) => (
+              {projects.map((p) => (
                 <li key={p.name}>
                   <a href={p.href}>{p.name}</a>
                   <span className="status" data-status={p.status}>
@@ -37,6 +37,9 @@ export default function Eng() {
               ))}
             </ul>
           </section>
+          <Link className="back" to="/" aria-label="Back" title="Back">
+            <IoIosArrowBack />
+          </Link>
         </main>
 
         <figure className="photo-wrap">
@@ -53,8 +56,8 @@ export default function Eng() {
               </a>
             ))}
           </nav>
-          <img className="photo" src="/me.jpg" alt="Engineering" />
-          <figcaption className="caption">{"Line one\nLine two"}</figcaption>
+          <img className="photo" src="/base.JPG" alt="portugalRock" />
+          <figcaption className="caption">{"^^placeholder for now"}</figcaption>
         </figure>
       </div>
     </div>

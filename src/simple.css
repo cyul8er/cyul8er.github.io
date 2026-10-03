@@ -4,7 +4,7 @@
   --muted: #5d6b78;
   --accent: #352f6f;
   --line: #d6d1c4;
-  --content-width:840px
+  --content-width: 1000px
 
   --photo-ratio: 4 / 5;
 }
@@ -78,7 +78,9 @@ a:focus-visible {
   max-width: var(--content-width);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.1fr) auto;
+
+  /* grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); */
   gap: clamp(32px, 6vw, 80px);
   align-items: center;
 }
@@ -100,7 +102,7 @@ a:focus-visible {
 
 .block p {
   margin: 0;
-  max-width: 42ch;
+  max-width: 80ch;
   font-size: 0.9rem;
 }
 
@@ -134,9 +136,28 @@ a:focus-visible {
   border-bottom: 1px solid var(--line);
 }
 
+.back {
+  display: inline-flex;
+  padding: 6px;
+  margin-left: -6px; /* lines the arrow up with the text edge */
+  color: var(--fg);
+  font-size: 1.25rem;
+  transition: color 0.15s;
+}
+
+.back:hover {
+  color: var(--accent);
+}
+
+.back:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
 .photo-wrap {
   justify-self: end;
   margin: 0;
+  max-width: 20rem;
 }
 
 .photo {
@@ -157,6 +178,7 @@ a:focus-visible {
   line-height: 1.4;
   white-space: pre-line;
 }
+
 /* narrow screens  */
 @media (max-width: 720px) {
     html,

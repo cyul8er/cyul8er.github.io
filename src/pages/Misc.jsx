@@ -1,22 +1,53 @@
+import "../simple.css";
+import { PROJECTS } from "../projs.js";
+import { LINKS } from "../links.js";
 import { Link } from "react-router-dom";
+import { IoIosArrowBack } from "react-icons/io";
 
-// somewhere in the JSX:
-<Link to="/">Back</Link>
+const projects = PROJECTS.filter((p) => p.cat === "misc");
 
-// Edit the items below. image: path in /public (e.g. "/misc/one.jpg"), "" shows a placeholder.
-// href: "" for no link, "/something" for a page on this site, "https://..." for an outside link.
-const ITEMS = [
-  { title: "Miscellaneous One", text: "One or two sentences about it.", image: "", href: "" },
-  { title: "Miscellaneous Two", text: "One or two sentences about it.", image: "", href: "" },
-  { title: "Miscellaneous Three", text: "One or two sentences about it.", image: "", href: "" },
-];
 
-export default function Miscellaneous() {
+export default function Misc() {
   return (
-    <SubPage
-      title="Miscellaneous"
-      intro="A sentence or two about this section."
-      items={ITEMS}
-    />
+    <div className="page">
+      <div className="layout">
+        <main className="text">
+          <h1 className="name">Miscellaneous Endeavours</h1>
+
+          <section className="block">
+            <br/>
+            <p>
+              Honestly, I just wanted somewhere definitive to put these (and this →)
+            </p>
+            <br/><br/>
+            <p>
+              Content soon I promise...
+            </p>
+          </section>
+
+          <Link className="back" to="/" aria-label="Back" title="Back">
+            <IoIosArrowBack />
+          </Link>
+        </main>
+
+        <figure className="photo-wrap">
+          <nav className="buttons" aria-label="Links">
+            {LINKS.map(({ label, href, icon: Icon }) => (
+              <a
+                key={label}
+                className="icon-link"
+                href={href}
+                aria-label={label}
+                title={label}
+              >
+                <Icon />
+              </a>
+            ))}
+          </nav>
+          <img className="photo" src="/base.JPG" alt="portugal rock" />
+          <figcaption className="caption">{"^^ Euro Summer '25 (Portugal)"}</figcaption>
+        </figure>
+      </div>
+    </div>
   );
 }
